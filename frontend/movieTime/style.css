@@ -15,3 +15,10 @@
 .navbar .nav-link.active{
     color: lightgray !important;
 }  
+
+.carousel-inner img{
+    filter: brightness(60%);
+    max-height: 700px;
+    object-fit: cover;
+    width: 100%;
+}
