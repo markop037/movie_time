@@ -10,7 +10,7 @@
 .navbar .nav-link:hover {
     color: lightgray !important;
     transition: 0.3s;
-}
+  }
 
 .navbar .nav-link.active{
     color: lightgray !important;
