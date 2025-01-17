@@ -3,6 +3,7 @@ package com.movieTime.movies.models;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.util.List;
 
@@ -17,6 +18,8 @@ public class Movie {
     private String poster;
     private List<String> genres;
     private List<String> backdrops;
+    @DocumentReference
+    private List<Review> reviewIds;
 
     public Movie() {
     }
@@ -85,5 +88,13 @@ public class Movie {
 
     public void setBackdrops(List<String> backdrops) {
         this.backdrops = backdrops;
+    }
+
+    public List<Review> getReviewIds() {
+        return reviewIds;
+    }
+
+    public void setReviewIds(List<Review> reviewIds) {
+        this.reviewIds = reviewIds;
     }
 }

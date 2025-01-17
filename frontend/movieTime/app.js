@@ -39,11 +39,11 @@ async function movies(){
             posterImg.classList.add("movie-poster");
 
             const textContainer = document.createElement("div");
-            textContainer.classList.add("text-start", "bg-opacity-50", "p-4", "rounded");
+            textContainer.classList.add("text-start", "text-center");
             
             const title = document.createElement("h4");
             title.textContent = movie.title;
-            title.classList.add("carousel-title", "text-center", "mt-3");
+            title.classList.add("carousel-title", "mt-3");
 
             const trailerButton = document.createElement("button");
             trailerButton.classList.add("btn", "bg-warning", "mt-3");
