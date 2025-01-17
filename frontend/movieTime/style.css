@@ -22,9 +22,11 @@
 
 .carousel-inner img{
     filter: brightness(55%);
-    max-height: 700px;
+    height: 100vh;
+    width: 100vw;
     object-fit: cover;
-    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .carousel-title{

@@ -55,6 +55,10 @@ async function movies(){
             const reviewButton = document.createElement("button");
             reviewButton.classList.add("btn", "btn-secondary", "mt-3", "ms-2");
             reviewButton.textContent = "Reviews";
+            reviewButton.addEventListener("click", () => {
+                window.location.href = `review.html?imdbId=${movie.imdbId}`
+            });
+
 
             textContainer.appendChild(title);
             textContainer.appendChild(trailerButton);
