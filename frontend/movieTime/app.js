@@ -29,7 +29,42 @@ async function movies(){
             img.src = movie.backdrops[0];
             img.classList.add("d-block", "w-100");
             img.alt = movie.title;
+
+            const contentContainer = document.createElement("div");
+            contentContainer.classList.add("carousel-caption", "d-flex", "align-items-center", "justify-content-center", "h-100");
+
+            const posterImg = document.createElement("img");
+            posterImg.src = movie.poster;
+            posterImg.alt = `${movie.title} Poster`;
+            posterImg.classList.add("movie-poster");
+
+            const textContainer = document.createElement("div");
+            textContainer.classList.add("text-start", "bg-opacity-50", "p-4", "rounded");
+            
+            const title = document.createElement("h4");
+            title.textContent = movie.title;
+            title.classList.add("carousel-title", "text-center", "mt-3");
+
+            const trailerButton = document.createElement("button");
+            trailerButton.classList.add("btn", "bg-warning", "mt-3");
+            trailerButton.textContent = "Watch Trailer";
+            trailerButton.addEventListener("click", () => {
+                window.open(movie.trailerLink, "_blank")
+            });
+
+            const reviewButton = document.createElement("button");
+            reviewButton.classList.add("btn", "btn-secondary", "mt-3", "ms-2");
+            reviewButton.textContent = "Reviews";
+
+            textContainer.appendChild(title);
+            textContainer.appendChild(trailerButton);
+            textContainer.appendChild(reviewButton);
+
+            contentContainer.appendChild(posterImg);
+            contentContainer.appendChild(textContainer);
+
             carouselItem.appendChild(img);
+            carouselItem.appendChild(contentContainer);
             carouselInner.appendChild(carouselItem);
         });
     }

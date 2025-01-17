@@ -1,3 +1,7 @@
+.navbar{
+    background-color: rgb(22, 22, 22);
+}
+
 .navbar img{
     height: 50px;
 }
@@ -17,8 +21,31 @@
 }  
 
 .carousel-inner img{
-    filter: brightness(60%);
+    filter: brightness(55%);
     max-height: 700px;
     object-fit: cover;
     width: 100%;
 }
+
+
+.carousel-title{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.btn-trailer{
+    background-color: gold;
+}
+
+.movie-poster {
+    height: 350px !important;
+    width: 250px !important;
+    border-radius: 5px;
+    margin-right: 50px;
+    object-fit: cover;
+    border: 2px solid gold;
+    filter: none !important;
+}
+
+
+
