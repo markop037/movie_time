@@ -27,6 +27,16 @@ async function getMovie() {
         element.style.backgroundBlendMode = "darken";
 
 
+        const reviewsContainer = document.querySelector("#reviewsContainer");
+        const reviews = movieData.reviewIds;
+
+        reviews.forEach(review => {
+            const li = document.createElement("li");
+            li.textContent = review.body;
+            reviewsContainer.appendChild(li);
+        });
+
+
 
 
     } catch(error){
