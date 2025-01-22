@@ -1,4 +1,4 @@
-document.querySelector("#btnSignup").addEventListener("click", async(e) => {
+document.querySelector("#signupForm").addEventListener("submit", async(e) => {
     e.preventDefault();
 
     const username = document.querySelector("#username").value;
@@ -15,6 +15,7 @@ document.querySelector("#btnSignup").addEventListener("click", async(e) => {
         alert('Passwords do not match');
         return;
     }
+    
     const user = new User(email, username, password);
 
     try{
@@ -29,10 +30,13 @@ document.querySelector("#btnSignup").addEventListener("click", async(e) => {
         if(response.ok){
             alert("User successfully created!");
 
-            document.querySelector("#username").value = "";
-            document.querySelector("#email").value = "";
-            document.querySelector("#password").value = "";
-            document.querySelector("#confirmPassword").value = "";
+            document.querySelector("#signupForm").reset();
+
+            window.location.href = "./login.html";
+        }
+        else{
+            const errorMessage = await response.text();
+            alert(`${errorMessage}`);
         }
     } catch(error){
         console.log(`Network error: ${error}`);
