@@ -32,7 +32,7 @@ document.querySelector("#signupForm").addEventListener("submit", async(e) => {
 
             document.querySelector("#signupForm").reset();
 
-            window.location.href = "./login.html";
+            window.location.href = "login.html";
         }
         else{
             const errorMessage = await response.text();
