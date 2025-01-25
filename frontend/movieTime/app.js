@@ -126,3 +126,73 @@ async function movies(){
 
 movies();
 
+async function deleteAccount(username){
+    try {
+        const response = await fetch(`http://localhost:8080/users/${username}`, {
+            method: "DELETE",
+        });
+
+        if(response.ok){
+            const message = await response.text();
+            alert(message)
+        } else{
+            throw new Error('User not found');
+        }
+    } catch(error){
+        console.error('Error:', error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const session = new Session();
+    const username = session.getSession();
+    const navbarRight = document.getElementById("navbar-right");
+    if(username){
+        navbarRight.innerHTML = `
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-user"></i> ${username}
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="#" id="logout">Logout</a></li>
+                    <li><a class="dropdown-item" href="#" id="deleteAccount">Delete Account</a></li>
+                </ul>
+            </li>
+        `;
+
+        document.getElementById("logout").addEventListener("click", () => {
+            session.destroySession();
+            alert("You have signed out");
+            window.location.reload();
+        });
+
+        document.getElementById("deleteAccount").addEventListener("click", async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/users/${username}`, {
+                    method: "DELETE",
+                });
+        
+                if(response.ok){
+                    const message = await response.text();
+                    alert(message)
+                } else{
+                    throw new Error('User not found');
+                }
+            } catch(error){
+                console.error('Error:', error);
+            }
+            session.destroySession();
+            window.location.reload();
+        });
+    }
+    else {
+        navbarRight.innerHTML = `
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="login.html">Log in</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="signup.html">Sign up</a>
+            </li>
+        `;
+    }
+})

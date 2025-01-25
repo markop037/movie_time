@@ -51,4 +51,13 @@ public class UserService {
         return null;
     }
 
+    public boolean deleteUserByUsername(String username){
+        Optional<User> user = userRepository.findByUsername(username);
+        if(user.isPresent()){
+            userRepository.deleteByUsername(username);
+            return true;
+        }
+        return false;
+    }
+
 }

@@ -27,15 +27,26 @@ public class UserController {
         return new ResponseEntity<User>(userService.createUser(user), HttpStatus.CREATED);
     }
 
-        @PostMapping("/check-user")
-        public ResponseEntity<?> checkUser(@RequestBody UserLoginRequest userLoginRequest){
-            User user = userService.checkUserExists(userLoginRequest.getUsername(),
-                    userLoginRequest.getPassword());
-            if(user == null){
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User does not exist.");
-            }
-            else{
-                return ResponseEntity.ok(user);
-            }
+    @PostMapping("/check-user")
+    public ResponseEntity<?> checkUser(@RequestBody UserLoginRequest userLoginRequest){
+        User user = userService.checkUserExists(userLoginRequest.getUsername(),
+                userLoginRequest.getPassword());
+        if(user == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User does not exist.");
         }
+        else{
+            return ResponseEntity.ok(user);
+        }
+    }
+
+    @DeleteMapping("/{username}")
+    public ResponseEntity<String> deleteUser(@PathVariable String username){
+        boolean isDeleted = userService.deleteUserByUsername(username);
+        if(isDeleted){
+            return ResponseEntity.ok("User deleted successfully.");
+        }
+        else{
+            return ResponseEntity.status(404).body("User not found.");
+        }
+    }
 }
