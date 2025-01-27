@@ -20,8 +20,8 @@ public class ReviewService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public Review createReview(String body, String imdbId){
-        Review review = new Review(body, LocalDateTime.now());
+    public Review createReview(String username, String body, String imdbId){
+        Review review = new Review(username, body, LocalDateTime.now());
 
         reviewRepository.insert(review);
 

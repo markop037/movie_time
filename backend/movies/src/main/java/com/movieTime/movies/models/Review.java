@@ -10,13 +10,15 @@ import java.time.LocalDateTime;
 public class Review {
     @Id
     private ObjectId id;
+    private String username;
     private String body;
     private LocalDateTime created;
 
     public Review() {
     }
 
-    public Review(String body, LocalDateTime created) {
+    public Review(String username, String body, LocalDateTime created) {
+        this.username = username;
         this.body = body;
         this.created = created;
     }
@@ -43,5 +45,13 @@ public class Review {
 
     public void setCreated(LocalDateTime created) {
         this.created = created;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

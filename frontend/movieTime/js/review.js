@@ -29,7 +29,7 @@ async function getMovie(imdbId) {
 
         reviews.forEach(review => {
             const li = document.createElement("li");
-            li.textContent = review.body;
+            li.textContent = `${review.username}: ${review.body}`;
             reviewsContainer.appendChild(li);
         });
 
@@ -47,11 +47,17 @@ const imdbId = urlParams.get("imdbId");
 getMovie(imdbId);
 
 document.querySelector(".review-form button").addEventListener("click", async() => {
+    const session = new Session();
+    const username = session.getSession();
     const reviewBody = document.querySelector("#reviewBody").value;
 
     if(!reviewBody.trim()){
         alert('Review cannot be empty!');
         return;
+    }  
+
+    if(!username){
+        username = "Guest";
     }
 
     try{
@@ -61,6 +67,7 @@ document.querySelector(".review-form button").addEventListener("click", async() 
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
+                username: username,
                 body: reviewBody,
                 imdbId: imdbId,
             }),
@@ -70,7 +77,9 @@ document.querySelector(".review-form button").addEventListener("click", async() 
             const review = await response.json();
             const reviewsContainer = document.querySelector("#reviewsContainer");
             const newReview = document.createElement("li");
-            newReview.textContent = review.body;
+
+            newReview.textContent = `${review.username}: ${review.body}`;
+            
             reviewsContainer.appendChild(newReview);
 
             document.getElementById('reviewBody').value = '';

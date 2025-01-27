@@ -1,5 +1,6 @@
 class Review{
-    constructor(body){
+    constructor(username, body){
+        this.username = username;
         this.body = body;
     }
 }
