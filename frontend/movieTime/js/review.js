@@ -48,7 +48,7 @@ getMovie(imdbId);
 
 document.querySelector(".review-form button").addEventListener("click", async() => {
     const session = new Session();
-    const username = session.getSession();
+    let username = session.getSession();
     const reviewBody = document.querySelector("#reviewBody").value;
 
     if(!reviewBody.trim()){
